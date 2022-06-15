@@ -52,6 +52,17 @@ public class Corriere {
 	 * @param cf the cf
 	 * @param patente the patente
 	 */
+	public Corriere(Long idCo, String nome, String cognome, String dob, Integer stipendio, String cf, String patente) {
+		super();
+		this.idCo = idCo;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.dob = dob;
+		this.stipendio = stipendio;
+		this.cf = cf;
+		this.patente = patente;
+	}
+	
 	public Corriere(String nome, String cognome, String dob, Integer stipendio, String cf, String patente) {
 		super();
 		this.nome = nome;
@@ -61,6 +72,7 @@ public class Corriere {
 		this.cf = cf;
 		this.patente = patente;
 	}
+	
 	
 	
 	/**

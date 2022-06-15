@@ -35,7 +35,7 @@ public class Camion {
 	
 	@Override
 	public String toString() {
-		return "[" + corriere.getNome() + " "+ corriere.getCognome()+ "], " + percorso.toString() + ", " + clienti.toString();
+		return "[" + corriere.getNome() + " " + corriere.getCognome() + ", ID: " + corriere.getIdCo() + "], " + percorso.toString() + ", " + clienti.toString();
 	}
 
 	public ArrayList<String> getPercorso() {

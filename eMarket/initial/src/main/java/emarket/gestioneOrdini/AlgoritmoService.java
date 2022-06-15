@@ -92,7 +92,8 @@ public class AlgoritmoService {
 					+ " FROM `corriere`"); 
 
 			while(resultSet.next()) {
-				corrieri.add(new Corriere(resultSet.getString("nome"),
+				corrieri.add(new Corriere(resultSet.getLong("id_co"),
+													resultSet.getString("nome"),
 													resultSet.getString("cognome"),
 													resultSet.getString("dob"),
 													resultSet.getInt("stipendio"),
