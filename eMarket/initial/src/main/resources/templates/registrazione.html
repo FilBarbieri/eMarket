@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="it-IT">
+<link rel="stylesheet"
+	href="https://bootswatch.com/5/united/bootstrap.min.css">
+
+<head>
+<title>Registrazione</title>
+</head>
+<body>
+
+	<!--  Inserimento corriere -->
+	<h1 style="text-align: center; margin-top: 10px;" class="display-3">Registrazione</h1>
+	<div class="container" align="center" style="margin-top:30px">
+	
+		<form action="" th:action="@{/inserimentoCliente}" th:object="${cliente}" method="post" id="formRegistrazione">
+			<table class="table table-hover" style="width:60%">
+				<tr>
+					<td>Nome:</td>
+					<td><input type="text" id="nome" class="form-control" th:field="*{nome}" required/></td>
+				</tr>
+				<tr>
+					<td>Cognome:</td>
+					<td><input type="text" id="cognome" class="form-control" th:field="*{cognome}" required /></td>
+				</tr>
+				<tr>
+					<td>Città:</td>
+					<td><input type="text" id="citta" class="form-control" th:field="*{citta}" required /></td>
+				</tr>
+				<tr>
+					<td>Indirizzo:</td>
+					<td><input type="text" id="indirizzo" class="form-control" th:field="*{indirizzo}" required /></td>
+				</tr>
+				<tr>
+					<td>CAP:</td>
+					<td><input type="number" id="cap" class="form-control" th:field="*{cap}" required /></td>
+				</tr>
+				<tr>
+					<td>Pagamento: </td>
+					<td><input type="text" id="pagamento" class="form-control" th:field="*{pagamento}" required /></td>
+				</tr>
+				<tr>
+					<td>E-mail:</td>
+					<td><input type="text" id="email" class="form-control" th:field="*{email}" required /></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type="password" id="password" class="form-control" th:field="*{password}" required /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<button class="btn btn-primary" type="button" style="width:100%" onclick="verificaDati()">Registrati</button>
+						<button type="submit" id="btnSubmit" style="display:none"></button>
+					</td>
+				</tr>
+			</table>
+		</form>		
+	</div>
+
+</body>
+
+	<script>
+	function inviaDati(){
+		
+		if(document.getElementById("btnSubmit").click() != null)
+			alert("Registrazione avvenuta con successo");
+			document.getElementById("btnSubmit").click();
+				  
+	}
+	
+	function verificaDati(){
+        var nome = document.getElementById("nome").value; 
+        var cognome = document.getElementById("cognome").value;
+        var citta = document.getElementById("citta").value;
+        var indirizzo = document.getElementById("indirizzo").value;
+        var cap = document.getElementById("cap").value;
+        var pagamento = document.getElementById("pagamento").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        
+        if(nome == "" || cognome == "" || citta == "" || indirizzo == "" || cap == "" || pagamento == "" || email == "" || password == "" ){ 
+            alert("Errore\nNon tutti i campi sono stati compilati")
+        }else{
+        	alert("Registrazione avvenuta con successo");
+			document.getElementById("btnSubmit").click();
+        }
+      }
+		  
+	</script>
+	
+</html>
+

@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="it-IT">
+<link rel="stylesheet" href="https://bootswatch.com/5/united/bootstrap.min.css">
+
+<head>
+<title>Gestione prodotti</title>
+</head>
+<body>
+	
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" th:href="@{index}">eMarket</a>
+			</div>
+			<div id="opzioni" class="collapse navbar-collapse">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item"><a class="nav-link" th:href="@{visualizzaCorriere}">Gestione Corrieri</a></li>
+					<li class="nav-item"><a class="nav-link active" th:href="@{visualizzaProdotto}">Gestione Prodotti</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!--  Inserimento corriere -->
+	<h1 style="text-align: center; margin-top: 10px;" class="display-3">Inserimento
+		prodotto</h1>
+	<div class="container" align="center">
+		<form action="#" th:action="@{/inserimentoProdotto}"
+			th:object="${prodotto}" method="post">
+			<table>
+				<tr>
+					<td>Nome:</td>
+					<td><input type="text" class="form-control" th:field="*{nome}" /></td>
+				</tr>
+				<tr>
+					<td>Prezzo:</td>
+					<td><input type="number" step="any" class="form-control" th:field="*{prezzo}" /></td>
+				</tr>
+				<tr>
+					<td>Quantità totale:</td>
+					<td><input type="number" class="form-control" th:field="*{qt}" /></td>
+				</tr>
+				<tr>
+					<td>Quantità massima:</td>
+					<td><input type="number" class="form-control" th:field="*{qm}" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td align="center"><button type="submit" class="btn btn-primary" style="width:100%">Inserisci</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+
+	<!--  Visualizza corriere -->
+	<div align="center" class="container" style="overflow-x: auto; margin-top:30px">
+		<h1 style="text-align: center; margin-top: 10px;" class="display-3">Visualizza prodotto</h1>
+
+		<table class="table table-hover">
+			<thead>
+				<tr class="table-primary">
+					<th scope="col">ID</th>
+					<th scope="col">Nome</th>
+					<th scope="col">Prezzo</th>
+					<th scope="col">Quantità totale</th>
+					<th scope="col">Quantità massima</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="table-active" th:each="location : ${dati}">
+					<td>
+						<span th:text="${location.idP}"> </span>
+						<form action="#" th:action="@{/modificaProdotto}"th:id="'m_f' + ${location.idP}" method="post">
+							<input type="number" th:form="'m_f' + ${location.idP}" style="display: none" th:name="idP" th:value="${location.idP}">
+						</form>
+						<form action="#" th:action="@{/cancellaProdotto}" th:id="'c_f' + ${location.idP}" method="post">
+							<input type="number" th:name="idP" th:form="'c_f' + ${location.idP}" style="display: none" th:value="${location.idP}">
+						</form>
+					</td>
+					<td>
+						<span th:class="'txt'+${location.idP}" th:text="${location.nome}"> </span> 
+						<input type="text" size="6" style="display: none"
+							th:name="nome" 
+							th:form="'m_f' + ${location.idP}" 
+							th:class="'inp'+${location.idP}"  
+							th:value="${location.nome}">
+					</td>
+					<td>
+						<span th:class="'txt'+${location.idP}" th:text="${location.prezzo}"> </span> 
+						<input type="number" step="any" style="display: none; width:5em"
+							th:name="prezzo" 
+							th:form="'m_f' + ${location.idP}"
+							th:class="'inp'+${location.idP}" 
+							th:value="${location.prezzo}">
+					</td>
+					<td>
+						<span th:class="'txt'+${location.idP}" th:text="${location.qt}"> </span> 
+						<input type="number" style="display: none; width:4em"
+							th:name="qt" 
+							th:form="'m_f' + ${location.idP}"
+							th:class="'inp'+${location.idP}" 
+							th:value="${location.qt}">
+					</td>
+					<td>
+						<span th:class="'txt'+${location.idP}" th:text="${location.qm}"> </span> 
+						<input type="number" style="display: none; width:4em"
+						th:name="qm" 
+						th:form="'m_f' + ${location.idP}"
+						th:class="'inp'+${location.idP}" 
+						th:value="${location.qm}">
+					</td>
+					<td>
+						<button th:class="'txt'+${location.idP}" th:attr="onclick=|show('${location.idP}')|">Modifica</button>
+						<button th:class="'inp'+${location.idP}" th:form="'m_f' + ${location.idP}"  style="display: none" type="submit">Conferma</button>
+						<button th:class="'inp'+${location.idP}" th:form="'c_f' + ${location.idP}"  style="display: none" type="submit">Cancella</button>
+						<button th:class="'inp'+${location.idP}" th:attr="onclick=|hide('${location.idP}')|" style="display: none"> Annulla</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div style="margin-top:20px"></div>
+
+	<script>
+
+function show(x){
+  const input = document.getElementsByClassName("inp"+x);
+  for (const box of input){
+    box.style.display ="";
+  }
+  
+  const text = document.getElementsByClassName("txt"+x);
+  for (const box of text){
+    box.style.display ="none";
+  }
+  
+}
+
+function hide(x){
+  const input = document.getElementsByClassName("inp"+x);
+  for (const box of input){
+    box.style.display ="none";
+  }
+  
+  const text = document.getElementsByClassName("txt"+x);
+  for (const box of text){
+    box.style.display ="";
+  }
+  
+}
+
+</script>
+</body>
+</html>
+

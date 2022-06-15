@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it-IT">
+<link rel="stylesheet" href="https://bootswatch.com/5/united/bootstrap.min.css">
+    <head>
+        <title>HOME</title>
+    </head>
+    
+    <body>
+        <div class="container">
+            <h1 style="text-align: center; margin-top: 40px;" class="display-3">HOME</h1>
+            <hr>  
+            	
+                <a th:href="@{visualizzaCorriere}" class="btn btn-primary btn-lg">Gestione corrieri</a>
+                <a th:href="@{visualizzaProdotto}" class="btn btn-primary btn-lg">Gestione prodotti</a>
+                <a th:href="@{visualizzaPercorsi}" class="btn btn-primary btn-lg">Assegnamento ordini</a>
+				
+                <!-- <a th:href="@{/registrazione} class="btn btn-primary btn-lg"">REGISTRAZIONE</a>  -->
+        </div>
+        
+    </body>
+</html>

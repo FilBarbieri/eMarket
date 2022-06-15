@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="it-IT">
+<link rel="stylesheet"
+	href="https://bootswatch.com/5/united/bootstrap.min.css">
+
+<head>
+<title>Assegnamento Ordini</title>
+</head>
+<body onload="bb()">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" th:href="@{index}">eMarket</a>
+			</div>
+			<div id="opzioni" class="collapse navbar-collapse">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item"><a class="nav-link" th:href="@{visualizzaCorriere}" >Gestione Corrieri</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{visualizzaProdotto}" >Gestione Prodotti</a></li>
+					<li class="nav-item"><a th:href="@{visualizzaPercorsi}" class="btn btn-primary btn-lg">Assegnamento ordini</a></li>
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	<p hidden id="yourId" th:text="${dati}"> </p>
+	
+	<div class="container mt-3">
+		<p id="pref"> </p>
+	</div>
+<script th:inline="javascript">
+
+function bb(){
+	var val = document.getElementById('yourId').innerHTML;
+	
+	val = val.slice(1,-1);
+	const myArray = val.split("], ");
+	 
+	 var riga = document.getElementById('pref');
+	 for (var i = 0; i <= myArray.length; i = i+3){
+	 	if( i+3 != myArray.length){
+	 		riga.innerHTML = riga.innerHTML + "<h5>Corriere: " + myArray[i].substring(1) + "<br>" + "Percorso: " + myArray[i+1].substring(1) + "<br>" + "Clienti: " + myArray[i+2].substring(1) + "</h5><hr>";
+	    }else{
+	        riga.innerHTML = riga.innerHTML + "<h5>Corriere: " + myArray[i].substring(1) + "<br>" + "Percorso: " + myArray[i+1].substring(1) + "<br>" + "Clienti: " + myArray[i+2].slice(1,-1) + "</h5><hr>";
+	    }
+	 }
+}
+	
+</script>
+
+</body>

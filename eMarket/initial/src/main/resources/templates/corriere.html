@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="it-IT">
+<link rel="stylesheet"
+	href="https://bootswatch.com/5/united/bootstrap.min.css">
+
+<head>
+<title>Gestione corrieri</title>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" th:href="@{index}">eMarket</a>
+			</div>
+			<div id="opzioni" class="collapse navbar-collapse">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item"><a class="nav-link active" href="#">Gestione Corrieri</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{visualizzaProdotto}">Gestione Prodotti</a></li>
+					<li class="nav-item"><a th:href="@{visualizzaPercorsi}" class="btn btn-primary btn-lg">Assegnamento ordini</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!--  Inserimento corriere -->
+	<h1 style="text-align: center; margin-top: 10px;" class="display-3">Inserimento corriere</h1>
+	<div class="container" align="center">
+		<form action="#" th:action="@{/inserimentoCorriere}" th:object="${corriere}" method="post">
+			<table>
+				<tr>
+					<td>Nome:</td>
+					<td><input type="text" class="form-control" th:field="*{nome}" /></td>
+				</tr>
+				<tr>
+					<td>Cognome:</td>
+					<td><input type="text" class="form-control" th:field="*{cognome}" /></td>
+				</tr>
+				<tr>
+					<td>Data di nascita:</td>
+					<td><input type="text" class="form-control" th:field="*{dob}" /></td>
+				</tr>
+				<tr>
+					<td>Stipendio:</td>
+					<td><input type="number" class="form-control" th:field="*{stipendio}" /></td>
+				</tr>
+				<tr>
+					<td>Codice fiscale:</td>
+					<td><input type="text" class="form-control" th:field="*{cf}" /></td>
+				</tr>
+				<tr>
+					<td>Patente:</td>
+					<td><input type="text" class="form-control" th:field="*{patente}" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td align="center"><button type="submit" class="btn btn-primary" style="width:100%">Inserisci</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+
+	<!--  Visualizza corriere -->
+	<div align="center" class="container" style="overflow-x: auto; margin-top:30px">
+		<h1 style="text-align: center; margin-top: 10px;" class="display-3">Visualizza corriere</h1>
+
+		<table class="table table-hover">
+			<thead>
+				<tr class="table-primary">
+					<th scope="col">ID</th>
+					<th scope="col">Nome</th>
+					<th scope="col">Cognome</th>
+					<th scope="col">Data di nascita</th>
+					<th scope="col">Stipendio</th>
+					<th scope="col">Codice fiscale</th>
+					<th scope="col">Patente</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="table-active" th:each="location : ${dati}">
+					<td>
+						<span th:text="${location.idCo}"> </span>
+						<form action="#" th:action="@{/modificaCorriere}" th:id="'m_f' + ${location.idCo}" method="post">
+							<input type="number" th:form="'m_f' + ${location.idCo}" style="display: none" th:name="idCo" th:value="${location.idCo}">
+						</form>
+						<form action="#" th:action="@{/cancellaCorriere}" th:id="'c_f' + ${location.idCo}" method="post">
+							<input type="number" th:name="idCo" th:form="'c_f' + ${location.idCo}" style="display: none" th:value="${location.idCo}">
+						</form>
+					</td>
+					<td>
+						<span th:class="'txt'+${location.idCo}" th:text="${location.nome}"> </span> 
+						<input size="4" type="text" style="display: none"
+						th:name="nome" 
+						th:form="'m_f' + ${location.idCo}"
+						th:class="'inp'+${location.idCo}" 
+						th:value="${location.nome}">
+					</td>
+					<td>
+						<span th:class="'txt'+${location.idCo}" th:text="${location.cognome}"> </span> 
+						<input type="text" size="4" style="display: none"
+						th:name="cognome"  
+						th:form="'m_f' + ${location.idCo}"
+						th:class="'inp'+${location.idCo}" 
+						th:value="${location.cognome}">
+					</td>
+					<td>
+						<span th:class="'txt'+${location.idCo}" th:text="${location.dob}"> </span> 
+						<input type="text" size="8" style="display: none"
+						th:name="dob" 
+						th:form="'m_f' + ${location.idCo}"
+						th:class="'inp'+${location.idCo}" 
+						th:value="${location.dob}">
+					</td>
+					<td>
+						<span th:class="'txt'+${location.idCo}" th:text="${location.stipendio}"> </span> 
+						<input type="text" size="4" style="display: none"
+						th:name="stipendio" 
+						th:form="'m_f' + ${location.idCo}"
+						th:class="'inp'+${location.idCo}" 
+						th:value="${location.stipendio}">
+					</td>
+					<td>
+						<span th:class="'txt'+${location.idCo}" th:text="${location.cf}"> </span> 
+						<input type="text" size="8" style="display: none"
+						th:name="cf" 
+						th:form="'m_f' + ${location.idCo}"
+						th:class="'inp'+${location.idCo}" 
+						th:value="${location.cf}">
+					</td>
+					<td>
+						<span th:class="'txt'+${location.idCo}" th:text="${location.patente}"> </span> 
+						<input type="text" size="4" style="display: none"
+						th:name="patente" 
+						th:form="'m_f' + ${location.idCo}"
+						th:class="'inp'+${location.idCo}" 
+						th:value="${location.patente}">
+					</td>
+					<td>
+						<button th:class="'txt'+${location.idCo}" th:attr="onclick=|show('${location.idCo}')|">Modifica</button>
+						<button th:form="'m_f' + ${location.idCo}" th:class="'inp'+${location.idCo}" style="display: none" type="submit">Conferma</button>
+						<button th:form="'c_f' + ${location.idCo}" th:class="'inp'+${location.idCo}" style="display: none" type="submit">Cancella</button>
+						<button th:class="'inp'+${location.idCo}" th:attr="onclick=|hide('${location.idCo}')|" style="display: none">Annulla</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div style="margin-top:20px"></div>
+	
+
+	<script>
+
+function show(x){
+  const input = document.getElementsByClassName("inp"+x);
+  for (const box of input){
+    box.style.display ="";
+  }
+  
+  const text = document.getElementsByClassName("txt"+x);
+  for (const box of text){
+    box.style.display ="none";
+  }
+  
+}
+
+function hide(x){
+  const input = document.getElementsByClassName("inp"+x);
+  for (const box of input){
+    box.style.display ="none";
+  }
+  
+  const text = document.getElementsByClassName("txt"+x);
+  for (const box of text){
+    box.style.display ="";
+  }
+  
+}
+
+</script>
+</body>
+</html>
+
