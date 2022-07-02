@@ -18,8 +18,12 @@ public class Cliente {
 	private String pagamento;
 	private String email;
 	private String password; 
-
+	
+	public Cliente() {
+	}
+	
 	public Cliente(String nome, String cognome, String pagamento, String email, String password, String citta, String indirizzo, Integer cap) {
+		super();
 		this.nome = nome;
 		this.cognome = cognome;
 		this.citta = citta;

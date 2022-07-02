@@ -115,6 +115,63 @@ public class Algoritmo {
 
 	}
 
+	/**
+	 * Metodo che divide gli ordini su ogni camion rispettando il vincolo della distanza
+	 *
+	 * @return ArrayList contenente i percorsi di ogni camion
+	 */
+	public ArrayList<Camion> assegnamentoOrdini() {
+
+		minCostFlow();
+		aggiungiFlusso();
+
+		//Variabili utilizzate dall'algoritmo
+		lista_camion = new ArrayList<Camion>();
+		double km = 0;
+		Vertice posizione;
+		Vertice start = null;
+
+		//Vertice di partenza
+		for(Vertice v: grafo.vertexSet()) {
+			if(v.getNome() == "24100")
+				start = v;
+		}
+
+		while(verificaPesoNodi()) { 										//Rifaccio fino a quando non ho finito tutti gli ordini
+			posizione = start;
+			km = 0;
+			Camion camion = new Camion();
+			while(km <= km_max) { 											//Hai ancota tempo/km a disposizione (se seguo cammino minimo si)
+				camion.aggiungiVertice(posizione);
+				if(posizione.getClienti() != null) {
+					camion.aggiungiClienti(posizione.getClienti());
+					posizione.setClienti();
+				}
+				DefaultWeightedEdge emax = trovaFlussoMassimo(posizione, km);
+				if(emax != null) {
+					posizione = grafo.getEdgeTarget(emax); 
+					modificaFlusso(emax);									//Elimino flusso da arco
+					km = km + grafo.getEdgeWeight(emax);
+					azzeraVertice(posizione); 								//Azzero peso nodo e riduco peso sorgente
+				}else { 													//Percorso suggerito da mincostflow ï¿½ terminato
+					DefaultWeightedEdge e = trovaVertice(posizione, km);
+					if(e != null) {
+						posizione = grafo.getEdgeTarget(e);
+						km = km + grafo.getEdgeWeight(e);
+						azzeraVertice(posizione);
+					}else{
+						km = km * 2; 										//Torno all'origine
+						posizione = start;
+					}
+				}
+			}																//Fine while interno
+
+			lista_camion.add(camion);
+			minCostFlow();
+		}																	//Fine while esterno
+
+		return lista_camion;
+	}
 
 	/**
 	 * Metodo che risolve il problema del MinCostFlow a partire dal grafo costruito
@@ -166,65 +223,6 @@ public class Algoritmo {
 			DefaultWeightedEdge e = null;
 			return e;
 		}
-	}
-
-
-	/**
-	 * Metodo che divide gli ordini su ogni camion rispettando il vincolo della distanza
-	 *
-	 * @return ArrayList contenente i percorsi di ogni camion
-	 */
-	public ArrayList<Camion> assegnamentoOrdini() {
-
-		minCostFlow();
-		aggiungiFlusso();
-
-		//Variabili utilizzate dall'algoritmo
-		lista_camion = new ArrayList<Camion>();
-		double km = 0;
-		Vertice posizione;
-		Vertice start = null;
-
-		//Vertice di partenza
-		for(Vertice v: grafo.vertexSet()) {
-			if(v.getNome() == "24100")
-				start = v;
-		}
-
-		while(verificaPesoNodi()) { 										//Rifaccio fino a quando non ho finito tutti gli ordini
-			posizione = start;
-			km = 0;
-			Camion camion = new Camion();
-			while(km <= km_max) { 											//Hai ancota tempo/km a disposizione (se seguo cammino minimo si)
-				camion.aggiungiVertice(posizione);
-				if(posizione.getClienti() != null) {
-					camion.aggiungiClienti(posizione.getClienti());
-					posizione.setClienti();
-				}
-				DefaultWeightedEdge emax = trovaFlussoMassimo(posizione, km);
-				if(emax != null) {
-					posizione = grafo.getEdgeTarget(emax); 
-					modificaFlusso(emax);									//Elimino flusso da arco
-					km = km + grafo.getEdgeWeight(emax);
-					azzeraVertice(posizione); 								//Azzero peso nodo e riduco peso sorgente
-				}else { 													//Percorso suggerito da mincostflow è terminato
-					DefaultWeightedEdge e = trovaVertice(posizione, km);
-					if(e != null) {
-						posizione = grafo.getEdgeTarget(e);
-						km = km + grafo.getEdgeWeight(e);
-						azzeraVertice(posizione);
-					}else{
-						km = km * 2; 										//Torno all'origine
-						posizione = start;
-					}
-				}
-			}																//Fine while interno
-
-			lista_camion.add(camion);
-			minCostFlow();
-		}																	//Fine while esterno
-
-		return lista_camion;
 	}
 
 

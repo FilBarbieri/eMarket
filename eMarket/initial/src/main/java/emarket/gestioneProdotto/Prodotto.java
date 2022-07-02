@@ -7,7 +7,6 @@ import javax.persistence.Id;
 @Entity
 public class Prodotto {
 
-	
 	@Id
 	@GeneratedValue()
 	private Long idP;
