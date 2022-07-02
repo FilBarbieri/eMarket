@@ -3,17 +3,40 @@
 <link rel="stylesheet" href="https://bootswatch.com/5/united/bootstrap.min.css">
     <head>
         <title>HOME</title>
+        
+        <style>
+        	a{
+        		width: 90%;
+        		height: 200px;
+        		padding: 80px 0 !important;
+        		margin: auto !important;
+        		
+        	}
+        	.btn btn-primary btn-lg{
+        		
+        	}
+        </style>
+        
     </head>
     
     <body>
         <div class="container">
             <h1 style="text-align: center; margin-top: 40px;" class="display-3">HOME</h1>
             <hr>  
+           	<div class="container">
+           		<div class="row">
+           			<div class="col-lg-4" style="text-align:center;">
+           				<a th:href="@{visualizzaCorriere}" class="btn btn-primary btn-lg"><h3>Gestione corrieri</h3></a>
+           			</div>
+           			<div class="col-lg-4" style="text-align:center">
+           				<a th:href="@{visualizzaProdotto}" class="btn btn-primary btn-lg"><h3>Gestione prodotti</h3></a>		
+           			</div>
+           			<div class="col-lg-4" style="text-align:center">
+      						<a th:href="@{visualizzaPercorsi}" class="btn btn-primary btn-lg"><h3>Assegnamento ordini</h3></a>     			
+           			</div>
+           		</div>
+           	</div>
             	
-                <a th:href="@{visualizzaCorriere}" class="btn btn-primary btn-lg">Gestione corrieri</a>
-                <a th:href="@{visualizzaProdotto}" class="btn btn-primary btn-lg">Gestione prodotti</a>
-                <a th:href="@{visualizzaPercorsi}" class="btn btn-primary btn-lg">Assegnamento ordini</a>
-				
                 <!-- <a th:href="@{/registrazione} class="btn btn-primary btn-lg"">REGISTRAZIONE</a>  -->
         </div>
         
