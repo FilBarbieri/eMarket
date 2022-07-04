@@ -1,9 +1,9 @@
 package emarket.gestioneOrdini;
 
-import java.util.Map;
+import java.util.ArrayList;
 
 public interface gestioneOrdiniIF {
 	
-	public Map<Long,Camion> getPercorsi();
+	public ArrayList<Camion> getPercorsi();
 	
 }

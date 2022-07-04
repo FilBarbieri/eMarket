@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @Controller
-public class AlgoritmoController implements WebMvcConfigurer{
+public class AlgoritmoController implements WebMvcConfigurer,gestioneOrdiniIF{
 
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/index").setViewName("index");

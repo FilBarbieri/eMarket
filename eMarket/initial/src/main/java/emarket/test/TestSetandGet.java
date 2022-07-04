@@ -6,13 +6,15 @@ import org.junit.Test;
 
 import emarket.gestioneCorriere.Corriere;
 import emarket.gestioneProdotto.Prodotto;
+import emarket.registrazione.Cliente;
 
 public class TestSetandGet{
-
+	
+	
 	//Prodotto
 	Float f = (float) 2.5;
-	Integer qt = (int) 500;
-	Integer qm = (int) 2;
+	Integer qt = 500;
+	Integer qm = 2;
 	Prodotto p1 = new Prodotto("Pasta", f , qt, qm);
 
 
@@ -47,7 +49,7 @@ public class TestSetandGet{
 
 	@Test
 	public void setQtTest() {
-		Integer qtnew = (int) 550;
+		Integer qtnew = 550;
 		p1.setQt(qtnew);
 		assertEquals(qtnew, p1.getQt());
 	}
@@ -59,14 +61,14 @@ public class TestSetandGet{
 
 	@Test
 	public void setQmTest() {
-		Integer qmnew = (int) 4;
+		Integer qmnew = 4;
 		p1.setQm(qmnew);
 		assertEquals(qmnew, p1.getQm());
 	}
 
 
 	//Corriere
-	Integer stipendio = (int) 20000;
+	Integer stipendio = 20000;
 	Corriere c1 = new Corriere("Acram", "Bousaid", "07/09/1997", stipendio, "CodiceFiscale", "AB");
 
 	@Test
@@ -109,7 +111,7 @@ public class TestSetandGet{
 
 	@Test
 	public void setStipendioTest() {
-		Integer stipendionew = (int) 25000;
+		Integer stipendionew = 25000;
 		c1.setStipendio(stipendionew);
 		assertEquals(stipendionew,c1.getStipendio());
 	}
@@ -137,7 +139,100 @@ public class TestSetandGet{
 		assertEquals("ABCE", c1.getPatente());
 	}
 	
+	
 	//Cliente
+	Cliente cl1 = new Cliente("Mario", "Rossi", "AMEX", "prova@gmail.com", "abcde", "Bergamo", "Via Bergamo", 24100);
+	
+	@Test
+	public void getNomeTestCl() {
+		assertEquals("Mario", cl1.getNome());
+	}
 
+	@Test
+	public void setNomeTestCl() {
+		cl1.setNome("Filippo");
+		assertEquals("Filippo", cl1.getNome());
+	}
+	
+
+	@Test
+	public void getCognomeTestCl() {
+		assertEquals("Rossi", cl1.getCognome());
+	}
+
+	@Test
+	public void setCognomeTestCl() {
+		cl1.setCognome("Barbieri");
+		assertEquals("Barbieri", cl1.getCognome());
+	}
+	
+	@Test
+	public void getPagamentoTestCl() {
+		assertEquals("AMEX", cl1.getPagamento());
+	}
+
+	@Test
+	public void setPagamentoTestCl() {
+		cl1.setPagamento("VISA");
+		assertEquals("VISA", cl1.getPagamento());
+	}
+	
+
+	@Test
+	public void getEmailTestCl() {
+		assertEquals("prova@gmail.com", cl1.getEmail());
+	}
+
+	@Test
+	public void setEmailTestCl() {
+		cl1.setEmail("prova");
+		assertEquals("prova", cl1.getEmail());
+	}
+	
+	@Test
+	public void getPasswordTestCl() {
+		assertEquals("abcde", cl1.getPassword());
+	}
+
+	@Test
+	public void setPasswordTestCl() {
+		cl1.setPassword("password");
+		assertEquals("password", cl1.getPassword());
+	}
+	
+	@Test
+	public void getCittaTestCl() {
+		assertEquals("Bergamo", cl1.getCitta());
+	}
+
+	@Test
+	public void setCittaTestCl() {
+		cl1.setCitta("Milano");
+		assertEquals("Milano", cl1.getCitta());
+	}
+	
+	@Test
+	public void getIndirizzoTestCl() {
+		assertEquals("Via Bergamo", cl1.getIndirizzo());
+	}
+
+	@Test
+	public void setIndirizzoTestCl() {
+		cl1.setIndirizzo("Via Milano");
+		assertEquals("Via Milano", cl1.getIndirizzo());
+	}
+	
+	@Test
+	public void getCapTestCl() {
+		Integer cap = 24100;
+		assertEquals(cap, cl1.getCap());
+	}
+
+	@Test
+	public void setCapTestCl() {
+		cl1.setCap(24030);
+		Integer cap = 24030;
+		assertEquals(cap, cl1.getCap());
+	}
 
 }

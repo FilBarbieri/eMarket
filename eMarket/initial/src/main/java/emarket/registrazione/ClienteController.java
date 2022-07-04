@@ -22,7 +22,7 @@ public class ClienteController implements WebMvcConfigurer, GestioneClienteIF{
 
   public void addViewControllers(ViewControllerRegistry registry) {
     registry.addViewController("/registrazione").setViewName("registrazione");
-    registry.addViewController("/visualizzaCliente").setViewName("registrazione");
+    //registry.addViewController("/visualizzaCliente").setViewName("registrazione");
   }
 
   //HTML
