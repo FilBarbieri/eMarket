@@ -204,7 +204,7 @@ public class Algoritmo {
 				DefaultWeightedEdge emax = trovaFlussoMassimo(posizione, km);
 				if(emax != null) {
 					posizione = grafo.getEdgeTarget(emax); 
-					modificaFlusso(emax);									//Elimino flusso da arco
+					azzeraFlusso(emax);									//Elimino flusso da arco
 					km = km + grafo.getEdgeWeight(emax);
 					azzeraVertice(posizione); 								//Azzero peso nodo e riduco peso sorgente
 				}else { 													//Percorso suggerito da mincostflow è terminato
@@ -304,11 +304,11 @@ public class Algoritmo {
 
 
 	/**
-	 * Metodo che modifica il valore del flusso passato come parametro
+	 * Metodo che azzera il valore del flusso passato come parametro
 	 *
 	 * @param Arco da modificare
 	 */
-	public void modificaFlusso(DefaultWeightedEdge e) {
+	public void azzeraFlusso(DefaultWeightedEdge e) {
 
 		for(Flusso x: flussi) {
 			if(x.getE().equals(e))
