@@ -2,13 +2,15 @@ package emarket.registrazione;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 public class Cliente {
 	
 	@Id
-	@GeneratedValue()
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCl;
 	private String nome;
 	private String cognome;

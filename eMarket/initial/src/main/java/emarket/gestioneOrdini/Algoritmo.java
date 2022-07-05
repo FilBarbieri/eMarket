@@ -153,7 +153,7 @@ public class Algoritmo {
 		double flusso = 0;
 
 		for(Flusso e: flussi) {
-			if ( (grafo.getEdgeSource(e.getE()).getNome() == posizione.getNome() )  && (e.getf() > flusso) && ( (km + grafo.getEdgeWeight(e.getE())) <= km_max) ) {
+			if ( (grafo.getEdgeSource(e.getE()).getNome() == posizione.getNome() )  && (e.getf() > flusso) && ( km + grafo.getEdgeWeight(e.getE()) <= km_max) ) {
 				start = index;
 				flusso = e.getf();
 			}
@@ -252,7 +252,7 @@ public class Algoritmo {
 	public DefaultWeightedEdge trovaVertice(Vertice posizione, double km) {
 		for(Vertice x: grafo.vertexSet()) {
 			DefaultWeightedEdge e = grafo.getEdge(posizione, x);
-			if(x.getB() < 0 && e != null && (km + grafo.getEdgeWeight(e) <= km_max))
+			if(x.getB() < 0 && e != null && ( (km + grafo.getEdgeWeight(e)) <= km_max))
 				return e;
 		}
 

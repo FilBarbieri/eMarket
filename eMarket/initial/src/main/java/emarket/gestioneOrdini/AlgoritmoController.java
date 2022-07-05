@@ -1,6 +1,7 @@
 package emarket.gestioneOrdini;
 
 import java.util.*;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,6 @@ public class AlgoritmoController implements WebMvcConfigurer,gestioneOrdiniIF{
 		registry.addViewController("/").setViewName("index");
 		registry.addViewController("/visualizzaPercorsi").setViewName("algoritmo");
 	}
-
 
 	private AlgoritmoService algoritmoService = new AlgoritmoService();
 

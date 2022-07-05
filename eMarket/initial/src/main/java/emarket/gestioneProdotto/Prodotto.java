@@ -2,13 +2,15 @@ package emarket.gestioneProdotto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 public class Prodotto {
 
 	@Id
-	@GeneratedValue()
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idP;
 	private String nome;
 	private Float prezzo;

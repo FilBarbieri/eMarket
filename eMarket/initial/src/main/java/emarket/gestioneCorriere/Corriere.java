@@ -2,7 +2,9 @@ package emarket.gestioneCorriere;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -13,7 +15,7 @@ public class Corriere {
 
 	/** The id. */
 	@Id
-	@GeneratedValue()
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCo;
 	
 	/** The nome. */

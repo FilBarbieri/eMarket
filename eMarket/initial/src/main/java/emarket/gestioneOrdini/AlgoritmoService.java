@@ -113,7 +113,7 @@ public class AlgoritmoService {
 			e.printStackTrace();
 		}
 		
-		System.out.println(camcor.toString());
+		//System.out.println(camcor.toString());
 		return camcor;
 	}
 
