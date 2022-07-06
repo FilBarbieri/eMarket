@@ -51,6 +51,8 @@ public class ClienteController implements WebMvcConfigurer, GestioneClienteIF{
   
   @PostMapping ("/inserimento_Cliente")
   public @ResponseBody Cliente insertCl(Cliente cliente) {
+	  String md5 = Cliente.encrypt(cliente.getPassword());
+	  cliente.setPassword(md5);
     return clienteRepository.save(cliente);
   }
 }

@@ -4,10 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 
 @Entity
 public class Cliente {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCl;
@@ -19,10 +21,10 @@ public class Cliente {
 	private String pagamento;
 	private String email;
 	private String password; 
-	
+
 	public Cliente() {
 	}
-	
+
 	public Cliente(String nome, String cognome, String pagamento, String email, String password, String citta, String indirizzo, Integer cap) {
 		super();
 		this.nome = nome;
@@ -33,6 +35,7 @@ public class Cliente {
 		this.pagamento = pagamento;
 		this.email = email;
 		this.password = password;
+
 	}
 
 	public Long getIdCl() {
@@ -118,6 +121,18 @@ public class Cliente {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	
-	
+	public static String encrypt(String message) {
+		try{
+			MessageDigest m = MessageDigest.getInstance("MD5");
+			m.update(message.getBytes());
+			return String.format("%032x",new BigInteger(1,m.digest()));
+		}
+		catch(Exception e){
+			return null;
+		}
+
+	}
+
 }
